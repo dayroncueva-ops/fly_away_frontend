@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState, type ReactNode} from "react"
 
 type AuthContextType = {
-    login : (userEmail:string, password:string) => void
-    logout: ()=>void
+    email:string|null;
+    login : (userEmail:string, password:string) => void;
+    logout: ()=>void;
 }
 
 export const AuthContext = createContext<AuthContextType|null>(null)
@@ -14,12 +15,12 @@ export function AuthProvider ({children} : {children:ReactNode} ){
     useEffect (()=>{
         const saved = localStorage.getItem("email")
         if (saved) {
-            setEmail(email)
+            setEmail(saved)
         }
     },[])
     const login = (userEmail:string)=> {
         setEmail (userEmail)
-        localStorage.getItem("userEmail")
+        localStorage.setItem("email",userEmail)
     }
     const logout = () => {
         setEmail(null)
@@ -28,7 +29,7 @@ export function AuthProvider ({children} : {children:ReactNode} ){
     
 
     return (
-        <AuthContext.Provider value={{ login ,logout}}>
+        <AuthContext.Provider value={{email, login ,logout}}>
             {children}
         </AuthContext.Provider>
     )
