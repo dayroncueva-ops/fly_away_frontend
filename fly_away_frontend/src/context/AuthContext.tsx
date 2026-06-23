@@ -1,8 +1,6 @@
 import { createContext, useEffect, useState, type ReactNode} from "react"
 
 type AuthContextType = {
-
-   
     login : (userEmail:string, password:string) => void
     logout: ()=>void
 }
@@ -28,7 +26,6 @@ export function AuthProvider ({children} : {children:ReactNode} ){
         localStorage.removeItem("email")
     }
     
-   
 
     return (
         <AuthContext.Provider value={{ login ,logout}}>

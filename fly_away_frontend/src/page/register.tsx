@@ -1,11 +1,15 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function register() {
-  return (
-    <div>
-        <h1>Bienvenido, por favor registrate</h1>
-        
-        </div>
-  )
+    const [password, setPassword] = useState<string |null>(null)
+    return <>
+    (
+        const password = (userPassword) => {
+            if (lenght(password)<=8) {
+                
+            }
+        }
+    )
+    </>
 }
