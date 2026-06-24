@@ -5,7 +5,7 @@ SPA en React + TypeScript para consumir la API local de Fly Away.
 ## Requisitos
 
 - Node.js instalado
-- Backend Fly Away corriendo en `http://localhost:8080`
+- Backend Fly Away corriendo en `http://localhost:8080`. El frontend usa proxy de Vite en `/api` para evitar problemas de CORS.
 
 ## Como correr
 
@@ -25,4 +25,5 @@ Abre la URL que muestre Vite, normalmente `http://localhost:5173`.
 - Reserva de vuelos para usuarios autenticados.
 - Detalle de reserva y listado de reservas guardadas en `localStorage`.
 - Logout y rutas protegidas.
+
 
