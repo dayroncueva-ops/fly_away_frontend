@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 import {
   bookFlight,
   getBooking,
@@ -9,6 +9,12 @@ import {
 
 function getErrorMessage(err: any, fallback: string) {
   return err.response?.data?.detail || err.response?.data?.message || fallback;
+}
+
+function getFlightItems(data: any): FlyghtDatos[] {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.items)) return data.items;
+  return [];
 }
 
 export default function FlySearch() {
@@ -24,6 +30,19 @@ export default function FlySearch() {
   const [bookingSuccess, setBookingSuccess] = useState("");
   const [bookingError, setBookingError] = useState("");
   const [bookingDetail, setBookingDetail] = useState<BookingDetail | null>(null);
+
+  useEffect(() => {
+    const loadFlights = async () => {
+      try {
+        const response = await search({});
+        setFlights(getFlightItems(response.data));
+      } catch (err: any) {
+        setError(getErrorMessage(err, "Error al cargar vuelos."));
+      }
+    };
+
+    loadFlights();
+  }, []);
 
   const toISO = (value: string) => {
     if (!value) return undefined;
@@ -46,7 +65,7 @@ export default function FlySearch() {
         estDepartureTimeTo: toISO(departureTo),
       });
 
-      setFlights(response.data.items || response.data);
+      setFlights(getFlightItems(response.data));
     } catch (err: any) {
       setFlights([]);
       setError(getErrorMessage(err, "Error al buscar vuelos."));
@@ -136,7 +155,7 @@ export default function FlySearch() {
       )}
 
       {flights.length > 0 && (
-        <div className="table-wrap">
+        <div className="table-wrap flights-scroll">
           <table>
             <thead>
               <tr>
