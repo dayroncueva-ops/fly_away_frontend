@@ -1,9 +1,9 @@
-﻿import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import FlySearch from "./page/FlySearch";
-import Login from "./page/login";
+import Login from "./page/Login";
 import MyBookings from "./page/MyBookings";
-import Register from "./page/register";
+import Register from "./page/Register";
 import ProtectedRoute from "./route/ProtectedRoute";
 
 function App() {
