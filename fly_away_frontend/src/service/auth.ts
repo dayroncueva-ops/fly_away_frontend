@@ -1,18 +1,36 @@
-import { api } from "../api/api";
+﻿import { api } from "../api/api";
 
+export type RegisterData = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+};
 
-type Datos = {
-    email: string;
-    firstname: string;
-    lastname: string ;
-    password: string ;
-}
-type DatosLogin = {
-    email:string;
-    password:string;
-}
-export const register = (data:Datos) => { 
-    return api.post("/users/register",data);
- };
- export const login =(data:DatosLogin) => api.post("/auth/login", data);
- export const getCurrent =()=> api.get("/users/current");
+export type LoginData = {
+  email: string;
+  password: string;
+};
+
+export type CurrentUser = {
+  id: number;
+  email?: string;
+  username?: string;
+  firstName?: string;
+  firstname?: string;
+  lastName?: string;
+  lastname?: string;
+};
+
+export const register = (data: RegisterData) => {
+  return api.post("/users/register", data);
+};
+
+export const login = (data: LoginData) => {
+  return api.post("/auth/login", data);
+};
+
+export const getCurrent = () => {
+  return api.get<CurrentUser>("/users/current");
+};
+

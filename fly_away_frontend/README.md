@@ -1,32 +1,28 @@
-# React + TypeScript + Vite
+﻿# Fly Away Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+SPA en React + TypeScript para consumir la API local de Fly Away.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js instalado
+- Backend Fly Away corriendo en `http://localhost:8080`
 
-## React Compiler
+## Como correr
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Abre la URL que muestre Vite, normalmente `http://localhost:5173`.
+
+## Funcionalidades
+
+- Registro con validacion de campos vacios y errores del backend.
+- Login con JWT guardado en `localStorage`.
+- Nombre del usuario autenticado usando `GET /users/current`.
+- Busqueda de vuelos por numero, aerolinea y rango de fechas.
+- Reserva de vuelos para usuarios autenticados.
+- Detalle de reserva y listado de reservas guardadas en `localStorage`.
+- Logout y rutas protegidas.
+
